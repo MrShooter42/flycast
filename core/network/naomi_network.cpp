@@ -346,9 +346,7 @@ void SetNaomiNetworkConfig(int node)
 	}
 	else if (gameId == "VIRTUAL-ON ORATORIO TANGRAM")
 	{
-		write_naomi_eeprom(0x45, node == -1 ? 3
-				: node == 0 ? 0 
-					: node == 1 ? 1 : 2 );
+		write_naomi_eeprom(0x45, node < 0 ? 3 : node >= 2 ? 2 : node); // if a third cabinet is lo
 	}
 	else if (gameId == "WAVE RUNNER GP")
 	{
@@ -363,7 +361,7 @@ void SetNaomiNetworkConfig(int node)
 	}
 	else if (gameId == "CLUB KART IN JAPAN" && settings.content.fileName.substr(0, 6) != "clubkp")
 	{
-		write_naomi_eeprom(0x34, node + 1); // also 03 = satellite
+		write_naomi_eeprom(0x34, node + 1); // also 03 = satellite. This is handled very wrong. We would need to set the first cabinet to Master, the rest to slave, set the seat IDs, and that's before we can even think about satellite.
 	}
 	else if (gameId == "INITIAL D"
 			|| gameId == "INITIAL D Ver.2"
