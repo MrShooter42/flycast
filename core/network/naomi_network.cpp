@@ -362,7 +362,7 @@ void SetNaomiNetworkConfig(int node)
 	else if (gameId == "CLUB KART IN JAPAN" && settings.content.fileName.substr(0, 6) != "clubkp")
 	{
 		write_naomi_eeprom(0x34, node == -1 ? 0 : node == 0 ? 1 : 2 ); // also 03 = satellite. This new implementation sets all nodes that aren't the server to Slave, and the next line sets seat ID. Satellite is a whole other can of worms.
-		write_naomi_eeprom(0x3d, node == -1 ? 0 : node) // this sets the seat number to 0 if not in a network, and sets it to the node number if linked.
+		write_naomi_eeprom(0x3d, node == -1 ? 0 : node); // this sets the seat number to 0 if not in a network, and sets it to the node number if linked.
 	}
 	else if (gameId == "INITIAL D"
 			|| gameId == "INITIAL D Ver.2"
