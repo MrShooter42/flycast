@@ -361,7 +361,7 @@ void SetNaomiNetworkConfig(int node)
 	}
 	else if (gameId == "CLUB KART IN JAPAN" && settings.content.fileName.substr(0, 6) != "clubkp")
 	{
-		write_naomi_eeprom(0x34, node + 1); // also 03 = satellite. This is handled very wrong. We would need to set the first cabinet to Master, the rest to slave, set the seat IDs, and that's before we can even think about satellite.
+		write_naomi_eeprom(0x34, node == -1 ? 0 : node == 0 ? 1 : 2 ); // also 03 = satellite. This new implementation sets all nodes that aren't the server to Slave, but it neccesitates seat ID to be configured manually. Satellite is a whole other can of worms.
 	}
 	else if (gameId == "INITIAL D"
 			|| gameId == "INITIAL D Ver.2"
